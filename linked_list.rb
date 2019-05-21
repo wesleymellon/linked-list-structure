@@ -78,6 +78,19 @@ class LinkedList
     end
     puts " nil "
   end
+
+  def insert_at(new_node, index)
+    return if index == 0
+    new_node.pointer = at(index)
+    at(index - 1).pointer = new_node
+    @size += 1
+  end
+
+  def remove_at(index)
+    at(index - 1).pointer = at(index).pointer
+    @size -= 1
+  end
+
 end
 
 class Node
@@ -90,20 +103,3 @@ class Node
 end
 
 list = LinkedList.new
-list.append(Node.new(5))
-list.append(Node.new(7))
-list.append(Node.new(2))
-list.append(Node.new(9))
-list.prepend(Node.new(1))
-list.prepend(Node.new(0))
-list.to_s
-list.pop
-list.to_s
-list.pop
-list.to_s
-list.pop
-list.to_s
-
-puts list.find(1)
-puts "----------"
-puts list.find(4)
